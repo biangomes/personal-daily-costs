@@ -13,4 +13,12 @@
     <string name="media_valor">"Média: "</string>
     <string name="media_deve_ser_um_numero_inteiro">Média deve ser um número inteiro</string>
     <string name="media_deve_ser_um_numero_entre_zero_e_cem">Média deve ser um número entre 0 e 100.</string>
+    <string name="possui_bolsa">Possui Bolsa</string>
+    <string name="data_horario">Data e Horário</string>
+    <string name="nome_estabelecimento">Nome do Estabelecimento</string>
+    <string name="valor_compra">Valor da compra</string>
+    <string name="nao_possui_bolsa">Não Possui Bolsa</string>
+    <string name="forma_pgto">Forma de pagamento</string>
+    <string name="debito">Débito</string>
+    <string name="credito">Crédito</string>
 </resources>

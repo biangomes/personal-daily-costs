@@ -67,7 +67,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonLimpar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMedia" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxBolsista" />
 
     <Button
         android:id="@+id/buttonLimpar"
@@ -79,5 +79,27 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonSalvar"
         app:layout_constraintTop_toTopOf="@+id/buttonSalvar" />
+
+    <Button
+        android:id="@+id/buttonIrParaGastos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:onClick="irParaGastos"
+        android:text="Ir para Gastos"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSalvar" />
+
+    <CheckBox
+        android:id="@+id/checkBoxBolsista"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/possui_bolsa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMedia" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
