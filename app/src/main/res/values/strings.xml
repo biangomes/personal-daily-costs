@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">mycosts</string>
+    <string name="nome">Nome</string>
+    <string name="media">Média</string>
+    <string name="limpar">Limpar</string>
+    <string name="salvar">Salvar</string>
+    <string name="nome_completo">Nome Completo</string>
+    <string name="media_final">Média Final</string>
+    <string name="as_entradas_foram_apagadas">As entradas foram apagadas!</string>
+    <string name="faltou_entrar_com_o_nome">Faltou entrar com o nome!</string>
+    <string name="faltou_entrar_com_a_media_de_gastos">Faltou entrar com a média de gastos!</string>
+    <string name="nome_valor">"Nome: "</string>
+    <string name="media_valor">"Média: "</string>
+    <string name="media_deve_ser_um_numero_inteiro">Média deve ser um número inteiro</string>
+    <string name="media_deve_ser_um_numero_entre_zero_e_cem">Média deve ser um número entre 0 e 100.</string>
+</resources>
