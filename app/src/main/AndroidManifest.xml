@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mycosts">
         <activity
+            android:name=".CostsActivity"
+            android:exported="false" />
+        <activity
             android:name=".PessoaActivity"
             android:exported="true">
             <intent-filter>
