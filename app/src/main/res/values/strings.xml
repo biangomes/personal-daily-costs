@@ -21,4 +21,9 @@
     <string name="forma_pgto">Forma de pagamento</string>
     <string name="debito">Débito</string>
     <string name="credito">Crédito</string>
+    <string name="direita">Direita</string>
+    <string name="esquerda">Esquerda</string>
+    <string name="ambas">Ambas</string>
+    <string name="mao_usada_deve_ser_selecionada">Mão Usada deve ser selecionada!</string>
+    <string name="mao_usada_valor">"Mão Usada: "</string>
 </resources>

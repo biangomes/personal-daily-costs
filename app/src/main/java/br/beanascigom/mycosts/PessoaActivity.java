@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,7 @@ public class PessoaActivity extends AppCompatActivity {
 
     private EditText editTextNome, editTextMedia;
     private CheckBox checkBoxBolsista;
+    private RadioGroup radioGroupMaoUsada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,12 +24,14 @@ public class PessoaActivity extends AppCompatActivity {
         editTextNome = findViewById(R.id.editTextNome);
         editTextMedia = findViewById(R.id.editTextMedia);
         checkBoxBolsista = findViewById(R.id.checkBoxBolsista);
+        radioGroupMaoUsada = findViewById(R.id.radioGroupMaoUsada);
     }
 
     public void limparCampos(View view) {
         editTextNome.setText(null);
         editTextMedia.setText(null);
         checkBoxBolsista.setChecked(Boolean.FALSE);
+        radioGroupMaoUsada.clearCheck();
 
         editTextNome.requestFocus();    // força o cursor da entrada de valores volta pro campo nome
 
@@ -85,12 +89,31 @@ public class PessoaActivity extends AppCompatActivity {
             return;
         }
 
+        int radioButtonId = radioGroupMaoUsada.getCheckedRadioButtonId();
+
+        String maoUsada;
+
+        if (radioButtonId == R.id.radioButtonDireita) {
+            maoUsada = getString(R.string.direita);
+        } else if (radioButtonId == R.id.radioButtonEsquerda) {
+            maoUsada = getString(R.string.esquerda);
+        } else if (radioButtonId == R.id.radioButtonAmbas) {
+            maoUsada = getString(R.string.ambas);
+        } else {
+            Toast.makeText(this,
+                    R.string.mao_usada_deve_ser_selecionada,
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
         boolean bolsista = checkBoxBolsista.isChecked();
 
         Toast.makeText(this,
                 getString(R.string.nome_valor) + nome + "\n" +
                 getString(R.string.media_valor) + media + "\n" +
-                (bolsista ? getString(R.string.possui_bolsa) : getString(R.string.nao_possui_bolsa)),
+                (bolsista ? getString(R.string.possui_bolsa) :
+                        getString(R.string.nao_possui_bolsa)) + "\n" +
+                getString(R.string.mao_usada_valor) + maoUsada,
                 Toast.LENGTH_LONG)
                 .show();
     }

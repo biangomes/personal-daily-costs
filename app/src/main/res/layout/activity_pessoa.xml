@@ -57,6 +57,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMedia" />
 
+    <RadioGroup
+        android:id="@+id/radioGroupMaoUsada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxBolsista">
+
+        <RadioButton
+            android:id="@+id/radioButtonDireita"
+            android:layout_width="137dp"
+            android:layout_height="wrap_content"
+            android:text="@string/direita" />
+
+        <RadioButton
+            android:id="@+id/radioButtonEsquerda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/esquerda" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAmbas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ambas" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/buttonSalvar"
         android:layout_width="wrap_content"
@@ -67,7 +94,7 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonLimpar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxBolsista" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupMaoUsada" />
 
     <Button
         android:id="@+id/buttonLimpar"
@@ -84,11 +111,12 @@
         android:id="@+id/buttonIrParaGastos"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="108dp"
         android:onClick="irParaGastos"
         android:text="Ir para Gastos"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonSalvar" />
 
