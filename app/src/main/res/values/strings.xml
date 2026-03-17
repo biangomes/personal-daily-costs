@@ -26,4 +26,18 @@
     <string name="ambas">Ambas</string>
     <string name="mao_usada_deve_ser_selecionada">Mão Usada deve ser selecionada!</string>
     <string name="mao_usada_valor">"Mão Usada: "</string>
+
+    <string-array name="spinner_opcoes_credito">
+        <item>1x de {}</item>
+        <item>2x de {}</item>
+        <item>3x de {}</item>
+        <item>4x de {}</item>
+        <item>5x de {}</item>
+        <item>6x de {}</item>
+        <item>7x de {}</item>
+        <item>8x de {}</item>
+        <item>9x de {}</item>
+        <item>10x de {}</item>
+    </string-array>
+
 </resources>
