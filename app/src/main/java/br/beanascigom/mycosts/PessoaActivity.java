@@ -1,55 +1,79 @@
-package br.beanascigom.mycosts;
+package br.edu.utfpr.alexandrefeitosa.spinnerstringarray;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.beanascigom.mycosts.R;
+
 public class PessoaActivity extends AppCompatActivity {
 
-    private EditText editTextNome, editTextMedia;
-    private CheckBox checkBoxBolsista;
+    private EditText   editTextNome, editTextMedia;
+    private CheckBox   checkBoxBolsista;
     private RadioGroup radioGroupMaoUsada;
+    private Spinner    spinnerTipo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pessoa);
 
-        editTextNome = findViewById(R.id.editTextNome);
-        editTextMedia = findViewById(R.id.editTextMedia);
-        checkBoxBolsista = findViewById(R.id.checkBoxBolsista);
+        editTextNome       = findViewById(R.id.editTextNome);
+        editTextMedia      = findViewById(R.id.editTextMedia);
+        checkBoxBolsista   = findViewById(R.id.checkBoxBolsista);
         radioGroupMaoUsada = findViewById(R.id.radioGroupMaoUsada);
+        spinnerTipo        = findViewById(R.id.spinnerTipo);
+
+        //popularSpinner();
     }
 
-    public void limparCampos(View view) {
+//    private void popularSpinner(){
+//
+//        ArrayList<String> lista = new ArrayList<>();
+//
+//        lista.add(getString(R.string.aluno));
+//        lista.add(getString(R.string.monitor));
+//        lista.add(getString(R.string.tutor));
+//        lista.add(getString(R.string.professor));
+//        lista.add(getString(R.string.coordenador));
+//
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+//                                                          android.R.layout.simple_list_item_1,
+//                                                          lista);
+//
+//        spinnerTipo.setAdapter(adapter);
+//    }
+
+    public void limparCampos(View view){
+
         editTextNome.setText(null);
         editTextMedia.setText(null);
-        checkBoxBolsista.setChecked(Boolean.FALSE);
+        checkBoxBolsista.setChecked(false);
         radioGroupMaoUsada.clearCheck();
+        spinnerTipo.setSelection(0);
 
-        editTextNome.requestFocus();    // força o cursor da entrada de valores volta pro campo nome
+        editTextNome.requestFocus();
 
         Toast.makeText(this,
                 R.string.as_entradas_foram_apagadas,
-                Toast.LENGTH_LONG)
-                .show();
+                Toast.LENGTH_LONG).show();
     }
 
-    public void salvarValores(View view) {
-        String nome = editTextNome.getText().toString();
-        String mediaString = editTextMedia.getText().toString();
+    public void salvarValores(View view){
 
-        if (nome == null || nome.isBlank()) {
+        String nome = editTextNome.getText().toString();
+
+        if (nome == null || nome.trim().isEmpty()){
+
             Toast.makeText(this,
                     R.string.faltou_entrar_com_o_nome,
-                    Toast.LENGTH_LONG)
-                    .show();
+                    Toast.LENGTH_LONG).show();
 
             editTextNome.requestFocus();
             return;
@@ -57,11 +81,13 @@ public class PessoaActivity extends AppCompatActivity {
 
         nome = nome.trim();
 
-        if (mediaString == null || mediaString.isBlank()) {
+        String mediaString = editTextMedia.getText().toString();
+
+        if (mediaString == null || mediaString.trim().isEmpty()){
+
             Toast.makeText(this,
-                            R.string.faltou_entrar_com_a_media_de_gastos,
-                            Toast.LENGTH_LONG)
-                    .show();
+                    R.string.faltou_entrar_com_a_media,
+                    Toast.LENGTH_LONG).show();
 
             editTextMedia.requestFocus();
             return;
@@ -71,18 +97,23 @@ public class PessoaActivity extends AppCompatActivity {
 
         try {
             media = Integer.parseInt(mediaString);
+
         } catch (NumberFormatException e) {
+
             Toast.makeText(this,
                     R.string.media_deve_ser_um_numero_inteiro,
-                    Toast.LENGTH_LONG)
-                    .show();
+                    Toast.LENGTH_LONG).show();
+
+            editTextMedia.requestFocus();
+            editTextMedia.setSelection(0, editTextMedia.getText().toString().length());
+            return;
         }
 
-        if (media < 0 || media > 100) {
+        if (media < 0 || media > 100){
+
             Toast.makeText(this,
-                    R.string.media_deve_ser_um_numero_entre_zero_e_cem,
-                    Toast.LENGTH_LONG)
-                    .show();
+                    R.string.media_deve_ser_entre_0_e_100,
+                    Toast.LENGTH_LONG).show();
 
             editTextMedia.requestFocus();
             editTextMedia.setSelection(0, editTextMedia.getText().toString().length());
@@ -93,15 +124,28 @@ public class PessoaActivity extends AppCompatActivity {
 
         String maoUsada;
 
-        if (radioButtonId == R.id.radioButtonDireita) {
+        if (radioButtonId == R.id.radioButtonDireita){
             maoUsada = getString(R.string.direita);
-        } else if (radioButtonId == R.id.radioButtonEsquerda) {
+        }else
+        if (radioButtonId == R.id.radioButtonEsquerda){
             maoUsada = getString(R.string.esquerda);
-        } else if (radioButtonId == R.id.radioButtonAmbas) {
+        }else
+        if (radioButtonId == R.id.radioButtonAmbas){
             maoUsada = getString(R.string.ambas);
-        } else {
+        }else{
             Toast.makeText(this,
-                    R.string.mao_usada_deve_ser_selecionada,
+                    R.string.faltou_preencher_a_mao_usada,
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+
+        String tipo = (String) spinnerTipo.getSelectedItem();
+
+        if (tipo == null){
+
+            Toast.makeText(this,
+                    R.string.o_spinner_tipo_nao_possui_valores,
                     Toast.LENGTH_LONG).show();
             return;
         }
@@ -109,17 +153,11 @@ public class PessoaActivity extends AppCompatActivity {
         boolean bolsista = checkBoxBolsista.isChecked();
 
         Toast.makeText(this,
-                getString(R.string.nome_valor) + nome + "\n" +
-                getString(R.string.media_valor) + media + "\n" +
-                (bolsista ? getString(R.string.possui_bolsa) :
-                        getString(R.string.nao_possui_bolsa)) + "\n" +
-                getString(R.string.mao_usada_valor) + maoUsada,
-                Toast.LENGTH_LONG)
-                .show();
-    }
-
-    public void irParaGastos(View view) {
-        Intent intent = new Intent(this, CostsActivity.class);
-        startActivity(intent);
+                getString(R.string.nome_valor)  + nome  + "\n" +
+                        getString(R.string.media_valor) + media + "\n" +
+                        (bolsista ? getString(R.string.possui_bolsa) : getString(R.string.nao_possui_bolsa)) + "\n" +
+                        getString(R.string.mao_usada_valor) + maoUsada  + "\n" +
+                        getString(R.string.tipo_valor) + tipo,
+                Toast.LENGTH_LONG).show();
     }
 }

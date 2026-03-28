@@ -11,17 +11,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mycosts">
+
+<!--        Aqui é aonde cria um novo atalho no aparelho Android-->
         <activity
-            android:name=".CostsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PessoaActivity"
+            android:name=".PessoasActivity"
             android:exported="true">
+<!--            intent-filter: Especifica como são as entradas para acessar a Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <!-- exported: significa que essa Activity pode ser acessada externamente por outras Activity-->
+        <activity
+            android:name=".PessoaActivity"
+            android:exported="false">
+        <!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
     </application>
 

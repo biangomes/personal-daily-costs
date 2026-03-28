@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="parcelas_array">
+        <item>parcelas</item>
+    </string-array>
+    <string-array name="tipos">
+        <item>@string/aluno</item>
+        <item>@string/monitor</item>
+        <item>@string/tutor</item>
+        <item>@string/professor</item>
+        <item>@string/coordenador</item>
+    </string-array>
+
+    <string-array name="pessoas_nome">
+        <item>Geovana</item>
+        <item>Nicole</item>
+        <item>Lahana Hippie</item>
+        <item>Maria Clara</item>
+        <item>Ananda</item>
+        <item>Roberta</item>
+        <item>Brenda</item>
+        <item>Helena H</item>
+        <item>Rosy</item>
+        <item>Ana Flavia</item>
+        <item>Pamela</item>
+    </string-array>
+
+    <integer-array name="pessoas_media">
+        <item>50</item>
+        <item>30</item>
+        <item>10</item>
+        <item>5</item>
+        <item>100</item>
+        <item>13</item>
+        <item>23</item>
+        <item>29</item>
+        <item>39</item>
+        <item>41</item>
+        <item>57</item>
+    </integer-array>
+</resources>
