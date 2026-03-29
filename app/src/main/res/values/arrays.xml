@@ -21,7 +21,6 @@
         <item>Brenda</item>
         <item>Helena H</item>
         <item>Rosy</item>
-        <item>Ana Flavia</item>
         <item>Pamela</item>
     </string-array>
 
@@ -36,6 +35,44 @@
         <item>29</item>
         <item>39</item>
         <item>41</item>
-        <item>57</item>
+    </integer-array>
+
+    <integer-array name="pessoas_bolsista">
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+        <item>1</item>
+        <item>1</item>
+        <item>0</item>
+        <item>0</item>
+        <item>1</item>
+        <item>0</item>
+        <item>1</item>
+    </integer-array>
+
+    <integer-array name="pessoas_tipo">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <integer-array name="pessoas_maos_usadas">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
+        <item>2</item>
     </integer-array>
 </resources>
