@@ -59,12 +59,11 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" +
-                "nome='" + nome + '\'' +
-                ", media=" + media +
-                ", bolsista=" + bolsista +
-                ", tipo=" + tipo +
-                ", maoUsada=" + maoUsada +
-                '}';
+        return
+                nome + "\n" +
+                media + "\n" +
+                bolsista + "\n" +
+                tipo + "\n" +
+                 maoUsada;
     }
 }
