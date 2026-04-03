@@ -37,4 +37,6 @@
     <string name="forma_pgto">Forma de Pagamento</string>
     <string name="debito">Débito</string>
     <string name="credito">Crédito</string>
+    <string name="pessoa_de_nome">Pessoa de nome \"</string>
+    <string name="foi_clicada">\"\nfoi clicada!</string>
 </resources>

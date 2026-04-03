@@ -1,8 +1,10 @@
 package br.beanascigom.mycosts;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +15,8 @@ public class PessoasActivity extends AppCompatActivity {
 
     private ListView listViewPessoas;
     private List<Pessoa> pessoas;
+    private PessoaAdapter pessoaAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,14 @@ public class PessoasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pessoas);
 
         listViewPessoas = findViewById(R.id.listViewPessoas);
+        listViewPessoas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Pessoa pessoa = (Pessoa) listViewPessoas.getItemAtPosition(position);
+                Toast.makeText(getApplicationContext(), getString(R.string.pessoa_de_nome) + pessoa.getNome() + getString(R.string.foi_clicada),
+                        Toast.LENGTH_LONG).show();
+            }
+        });   // clicar no elemento da lista
 
         popularListaPessoas();
     }
@@ -44,9 +56,7 @@ public class PessoasActivity extends AppCompatActivity {
             pessoa = new Pessoa(pessoas_nomes[cont], pessoas_medias[cont], bolsista, pessoas_tipos[cont], maoUsada);
             pessoas.add(pessoa);
         }
-
-        ArrayAdapter<Pessoa> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, pessoas);
-
-        listViewPessoas.setAdapter(adapter);
+        pessoaAdapter = new PessoaAdapter(this, pessoas);
+        listViewPessoas.setAdapter(pessoaAdapter);
     }
 }
