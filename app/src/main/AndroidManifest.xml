@@ -15,7 +15,8 @@
 <!--        Aqui é aonde cria um novo atalho no aparelho Android-->
         <activity
             android:name=".PessoasActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan">
 <!--            intent-filter: Especifica como são as entradas para acessar a Activity-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

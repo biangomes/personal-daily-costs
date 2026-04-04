@@ -13,17 +13,23 @@ import java.util.List;
 
 public class PessoaRecyclerViewAdapter extends RecyclerView.Adapter<PessoaRecyclerViewAdapter.PessoaHolder> {
 
+    private OnItemClickListener onItemClickListener;
     private Context context;
     private List<Pessoa> pessoas;
     private String[] tipos;
 
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+        void onItemLongClick(View view, int position);
+    }
 
-    public class PessoaHolder extends RecyclerView.ViewHolder {
+    public class PessoaHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
         public TextView textViewValorNome;
         public TextView textViewValorMedia;
         public TextView textViewValorBolsista;
         public TextView textViewValorTipo;
+
         public TextView textViewValorMaoUsada;
 
         public PessoaHolder(@NonNull View itemView) {
@@ -34,12 +40,38 @@ public class PessoaRecyclerViewAdapter extends RecyclerView.Adapter<PessoaRecycl
             textViewValorBolsista = itemView.findViewById(R.id.textViewValorBolsista);
             textViewValorTipo = itemView.findViewById(R.id.textViewValorTipo);
             textViewValorMaoUsada = itemView.findViewById(R.id.textViewMaoUsada);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (onItemClickListener != null) {
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onItemClick(v, pos);
+                }
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            if (onItemClickListener != null) {
+                int pos = getAdapterPosition();
+                if (pos != RecyclerView.NO_POSITION) {
+                    onItemClickListener.onItemLongClick(v, pos);
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 
-    public PessoaRecyclerViewAdapter(Context context, List<Pessoa> pessoas) {
+    public PessoaRecyclerViewAdapter(Context context, List<Pessoa> pessoas, OnItemClickListener listener) {
         this.context = context;
         this.pessoas = pessoas;
+        this.onItemClickListener = listener;
 
         tipos = context.getResources().getStringArray(R.array.tipos);
     }
@@ -82,6 +114,6 @@ public class PessoaRecyclerViewAdapter extends RecyclerView.Adapter<PessoaRecycl
 
     @Override
     public int getItemCount() {
-        return 0;
+        return pessoas != null ? pessoas.size() : 0;
     }
 }

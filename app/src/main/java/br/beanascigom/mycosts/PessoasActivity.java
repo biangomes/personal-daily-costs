@@ -2,20 +2,23 @@ package br.beanascigom.mycosts;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PessoasActivity extends AppCompatActivity {
 
-    private ListView listViewPessoas;
+    private RecyclerView recyclerViewPessoas;
     private List<Pessoa> pessoas;
-    private PessoaAdapter pessoaAdapter;
+    private PessoaRecyclerViewAdapter pessoaRecyclerViewAdapter;
+    private PessoaRecyclerViewAdapter.OnItemClickListener onItemClickListener;
 
 
     @Override
@@ -23,15 +26,29 @@ public class PessoasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pessoas);
 
-        listViewPessoas = findViewById(R.id.listViewPessoas);
-        listViewPessoas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        recyclerViewPessoas = findViewById(R.id.recyclerViewPessoas);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerViewPessoas.setLayoutManager(layoutManager);
+        recyclerViewPessoas.setHasFixedSize(true);
+        recyclerViewPessoas.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
+
+
+        onItemClickListener = new PessoaRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Pessoa pessoa = (Pessoa) listViewPessoas.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), getString(R.string.pessoa_de_nome) + pessoa.getNome() + getString(R.string.foi_clicada),
+            public void onItemClick(View view, int position) {
+                Pessoa pessoa = pessoas.get(position);
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.pessoa_de_nome) + pessoa.getNome() + getString(R.string.foi_clicada),
                         Toast.LENGTH_LONG).show();
             }
-        });   // clicar no elemento da lista
+            @Override
+            public void onItemLongClick(View view, int position) {
+                Pessoa pessoa = pessoas.get(position);
+                Toast.makeText(getApplicationContext(),
+                        getString(R.string.pessoa_de_nome) + pessoa.getNome() + getString(R.string.recebeu_um_click_longo),
+                        Toast.LENGTH_LONG).show();
+            }
+        };
 
         popularListaPessoas();
     }
@@ -56,7 +73,9 @@ public class PessoasActivity extends AppCompatActivity {
             pessoa = new Pessoa(pessoas_nomes[cont], pessoas_medias[cont], bolsista, pessoas_tipos[cont], maoUsada);
             pessoas.add(pessoa);
         }
-        pessoaAdapter = new PessoaAdapter(this, pessoas);
-        listViewPessoas.setAdapter(pessoaAdapter);
+        // terceiro parametro do construtor eh null se nao quiser tratar evento
+        pessoaRecyclerViewAdapter = new PessoaRecyclerViewAdapter(this, pessoas, onItemClickListener);
+
+        recyclerViewPessoas.setAdapter(pessoaRecyclerViewAdapter);
     }
 }
