@@ -1,4 +1,4 @@
-package br.edu.utfpr.alexandrefeitosa.spinnerstringarray;
+package br.beanascigom.mycosts;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +9,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import br.beanascigom.mycosts.R;
 
 public class PessoaActivity extends AppCompatActivity {
 
